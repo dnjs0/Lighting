@@ -1,10 +1,9 @@
-package com.lighting.chat;
+package com.lighting.chat.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,6 +100,26 @@ public class ChatDAO {
             e.printStackTrace();
         }
         return list;
+    }
+
+
+
+    public String getNicknameBySeq(String memberSeq) {
+        String myNickname = null;
+        try {
+            
+            String sql ="select nickname from tblmember where tblmemberseq=?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, memberSeq);
+            rs = pstat.executeQuery();
+            if (rs.next()) {
+                myNickname = rs.getString("nickname");
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return myNickname;
     }
     
     

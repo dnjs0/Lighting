@@ -1,4 +1,4 @@
-package com.lighting.chat;
+package com.lighting.chat.model;
 
 import lombok.Getter;
 import lombok.Setter;

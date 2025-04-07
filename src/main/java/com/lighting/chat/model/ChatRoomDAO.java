@@ -1,4 +1,4 @@
-package com.lighting.chat;
+package com.lighting.chat.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

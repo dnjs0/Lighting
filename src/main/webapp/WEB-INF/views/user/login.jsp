@@ -155,15 +155,15 @@
       <!-- 개발용 -->
         <div>
         <form action="/lighting/user/loginok.do" method="POST">
-            <input type="hidden" name="id" value="aaac">
-            <input type="hidden" name="pw" value="aaaaaa1!">
+            <input type="hidden" name="id" value="4p2lv7zo">
+            <input type="hidden" name="pw" value="m3^37#66">
             <button type="submit" class="in">1로그인</button>
         </form>
         </div>
         <div>
         <form action="/lighting/user/loginok.do" method="POST">
-            <input type="hidden" name="id" value="!eaa">
-            <input type="hidden" name="pw" value="aaaaaa1!">
+            <input type="hidden" name="id" value="m8pv3xbevv">
+            <input type="hidden" name="pw" value="x2$8xu6937eg">
             <button type="submit" class="in">2로그인</button>
         </form>
         </div>

@@ -1,0 +1,58 @@
+[Model]
+
+1. ChatDTO.java
+채팅 관련 데이터를 담는 DTO입니다.
+
+2.ChatDAO.java, ChatRoomDAO.java
+데이터베이스와의 직접적인 상호작용을 담당하는 DAO로, Model의 일부로 볼 수 있습니다.
+
+[Service (비즈니스 로직)]
+
+1. ChatService.java (신규 생성)
+
+채팅방의 존재 여부 확인, 생성, 메시지 삽입, 채팅 내역 조회 등 여러 DAO의 기능을 하나로 모아 캡슐화합니다.
+
+Controller(HTTP, WebSocket)에서 공통으로 사용하는 비즈니스 로직을 한 곳에 모아둠으로써 재사용성과 유지보수가 용이해집니다.
+
+[Controller]
+
+1. ChatView.java
+로그인한 사용자가 참여 중인 채팅방 목록을 조회하여 JSP(뷰)로 전달하는 역할을 합니다.
+
+2. Chat.java
+HTTP 요청(POST: 메시지 저장, GET: 채팅 내역 조회)을 처리하는 컨트롤러입니다.
+
+3. ChatRoomCreateServlet.java
+채팅방 생성을 요청받아 ChatService를 통해 채팅방을 생성하고 그 결과를 JSON으로 응답합니다.
+
+4. ChatEndpoint.java & ChatEndpointConfigurator.java
+웹소켓 연결을 관리하는 컨트롤러 역할을 하며, 실시간 채팅 메시지 전달과 저장을 처리합니다. (웹소켓은 일반 HTTP와 다르지만 여기서는 Controller 역할로 취급)
+
+
+
+리팩토링 후의 장점
+관심사의 분리:
+Controller는 요청과 응답에 집중하고, 비즈니스 로직은 Service 계층에서 처리함으로써 각 계층의 역할이 명확해집니다.
+
+유지보수성 향상:
+DAO와 비즈니스 로직이 분리되어, 예를 들어 채팅 메시지 삽입 로직에 변경이 필요할 때 Service 계층만 수정하면 되므로, 전체적인 영향 범위가 줄어듭니다.
+
+재사용성 증가:
+ChatService에 캡슐화된 메서드는 HTTP 기반 채팅 요청과 웹소켓 연결 모두에서 재사용할 수 있습니다.
+
+테스트 용이성:
+Service 계층의 메서드를 단위 테스트로 검증하기 쉬워지고, Controller에서는 단순히 Service를 호출하는 역할만 담당하므로 테스트가 간단해집니다.
+
+확장성:
+새로운 채팅 기능(예: 그룹 채팅, 파일 전송 등)이 추가될 때, 기존 Controller와 View 코드를 최소한으로 변경하면서 Service 계층에 추가 로직을 구현할 수 있습니다.
+
+
+Model: DAO와 DTO가 데이터 저장 및 전송 역할을 담당합니다.
+
+Service: ChatService가 DAO를 감싸고 비즈니스 로직(채팅방 생성, 메시지 삽입, 채팅 내역 조회 등)을 캡슐화하여 여러 Controller에서 재사용 가능하도록 합니다.
+
+Controller: HTTP 기반의 ChatView, Chat, ChatRoomCreateServlet과 웹소켓 기반의 ChatEndpoint가 사용자 요청 및 실시간 메시지 전송을 담당합니다.
+
+
+
+

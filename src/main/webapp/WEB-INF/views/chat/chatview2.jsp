@@ -163,96 +163,107 @@
   </div>
     
     <script>
-    
-    
-    var ws;
-    var currentRoom = "";
-    
-    //엔ㅌ터 : 전송 , 쉬프트 엔터 : 줄바꿈
-    $('#content').keydown(function(e){
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();  // 줄바꿈 방지
-            $('#chatForm').submit();  // 폼 전송 
+// 전역 변수: WebSocket 연결, 채팅방 번호, 상대방 닉네임, 그리고 내 닉네임
+var ws;
+var currentRoom = "";
+var partnerNickname = "";
+var myNickname = ""; // 내 닉네임을 저장할 전역 변수
+
+// 문서가 준비되면 내 닉네임을 서버에서 한 번만 조회
+$(document).ready(function(){
+    $.ajax({
+        url: "${pageContext.request.contextPath}/chat/getMyNickname.do",
+        type: "GET",
+        dataType: "json",
+        success: function(response){
+            myNickname = response.nickname;
+            console.log("내 닉네임:", myNickname);
+        },
+        error: function(err) {
+            console.error("내 닉네임 로드 실패", err);
         }
     });
     
-    // 버튼 클릭 시 채팅방 선택 및 WebSocket 연결 설정
+    // 엔터키: 전송, Shift+Enter: 줄바꿈 처리
+    $('#content').keydown(function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();  // 줄바꿈 방지
+            $('#chatForm').submit();
+        }
+    });
+    
+    // 채팅방 버튼 클릭 이벤트
     $('.toggle-btn').click(function(){
-        // 버튼 활성화 처리
-       //$('.toggle-btn').removeClass('active');
-        //$(this).addClass('active');
-        var isActive = $(this).hasClass('active');
-        
-        
-     // 이미 눌린 상태면 해제 처리
-        if (isActive) {
+        // 이미 활성화된 버튼이면 해제 후 채팅 내용 비우기
+        if ($(this).hasClass('active')) {
             $(this).removeClass('active');
             $('#chatBox').empty();
-
             if (ws && ws.readyState === WebSocket.OPEN) {
                 ws.close();
             }
-
-            return; 
+            return;
         }
-
-        // 나머지는 새로운 채팅방 클릭 시 동작
+        
+        // 모든 버튼 비활성화 후 현재 버튼 활성화
         $('.toggle-btn').removeClass('active');
         $(this).addClass('active');
         
-        // 채팅방 번호와 닉네임 설정
-        var currentRoom = $(this).data('chatroom');
-	    var nickname = $(this).data('nickname');
-	    var currentMemberSeq = $('#tblMemberSeq').val();
+        // 버튼의 data 속성에서 채팅방 번호와 상대 닉네임 추출
+        currentRoom = $(this).data('chatroom');
+        partnerNickname = $(this).data('nickname');
         
-	    $.ajax({
-	        url: "${pageContext.request.contextPath}/chat/chat.do",
-	        type: "GET",
-	        data: { nickname: nickname },
-	        dataType: "json",
-	        success: function(response) {
-	            $('#chatBox').empty();
-	            // 서버에서 받은 JSON 배열(response)을 순회하며 메시지 출력
-	            $.each(response, function(index, message){
-	                // 서버에서 'sender'에 "나" 또는 상대방 닉네임을 설정하므로 그대로 사용합니다.
-	                var senderDisplay = message.sender;
-	                $('#chatBox').append(
-	                    '<p><strong>' + senderDisplay + ' : </strong>' + message.content + 
-	                    ' <em>(' + new Date(message.postDate).toLocaleTimeString() + ')</em></p>'
-	                );
-	            });
-	            $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
-	        },
-	        error: function(err) {
-	            console.error("채팅 내역 로드 실패", err);
-	        }
-	    });
-	    
-        // 기존 WebSocket 연결이 있다면 종료
-        if(ws && ws.readyState === WebSocket.OPEN) {
+        // AJAX로 해당 채팅방의 채팅 내역 로드
+        $.ajax({
+            url: "${pageContext.request.contextPath}/chat/chat.do",
+            type: "GET",
+            data: { nickname: partnerNickname },
+            dataType: "json",
+            success: function(response) {
+                $('#chatBox').empty();
+                $.each(response, function(index, message){
+                    // 내 닉네임과 비교해서 내 메시지이면 "나", 아니면 실제 sender를 사용
+                    var isMyMessage = (message.sender === myNickname);
+                    var senderDisplay = isMyMessage ? "나" : message.sender;
+                    var cssClass = isMyMessage ? "mine" : "other";
+                    
+                    $('#chatBox').append(
+                        '<p class="'+ cssClass +'"><strong>' + senderDisplay + ' : </strong>' 
+                        + message.content + ' <em>(' + new Date(message.postDate).toLocaleTimeString() + ')</em></p>'
+                    );
+                });
+                $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
+            },
+            error: function(err) {
+                console.error("채팅 내역 로드 실패", err);
+            }
+        });
+        
+        // 기존 WebSocket 연결 종료
+        if (ws && ws.readyState === WebSocket.OPEN) {
             ws.close();
         }
         
-        // WebSocket 연결 생성 (URL은 서버 환경에 맞게 수정)
+        // 새로운 WebSocket 연결 생성 (URL은 서버 환경에 맞게)
         var wsUrl = "ws://" + window.location.host + "/lighting/chat/" + currentRoom;
         ws = new WebSocket(wsUrl);
         
         ws.onopen = function() {
-        	console.log("WebSocket 연결 성공: 채팅방 " + currentRoom);
+            console.log("WebSocket 연결 성공: 채팅방 " + currentRoom);
         };
         
         ws.onmessage = function(event) {
             var data = JSON.parse(event.data);
-            var currentNickname = $('#nickname').val();
-            var isMine = (data.sender === currentNickname);
-            var senderDisplay = isMine ? "나" : data.sender;
-            var cssClass = isMine ? "mine" : "other";
-
+            console.log("partnerNickname:", partnerNickname);
+            console.log("data.sender:", data.sender);
+            // data.sender가 내 닉네임과 같으면 내 메시지, 그렇지 않으면 상대 메시지로 구분
+            var isMyMessage = (data.sender === myNickname);
+            var senderDisplay = isMyMessage ? "나" : data.sender;
+            var cssClass = isMyMessage ? "mine" : "other";
+            
             $('#chatBox').append(
-            	    `<p class="\${cssClass}"><strong>\${senderDisplay} :</strong> \${data.content} 
-            	    <em>(\${new Date(data.timestamp).toLocaleTimeString()})</em></p>`
-            	  );
-
+                `<p class="\${cssClass}"><strong>\${senderDisplay} :</strong> \${data.content} 
+                <em>(\${new Date(data.timestamp).toLocaleTimeString()})</em></p>`
+            );
             $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
         };
         
@@ -265,52 +276,52 @@
         };
     });
     
-    // 메시지 전송 이벤트 처리
+    // 메시지 전송 이벤트 처리: 내 닉네임을 sender로 사용
     $('#chatForm').submit(function(e){
         e.preventDefault();
-        if(!ws || ws.readyState !== WebSocket.OPEN) {
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
             console.error("WebSocket 연결이 되어있지 않습니다.");
             return;
         }
-        var sender = $('#nickname').val();
+        var sender = myNickname;
         var content = $('#content').val();
         var message = JSON.stringify({ sender: sender, content: content });
         ws.send(message);
         $('#content').val('');
     });
     
- // 채팅방 생성 버튼 클릭 이벤트 처리
+    // 채팅방 생성 버튼 클릭 이벤트 처리
     $('#createChatRoomBtn').click(function(){
-        var nickname = $('#nickname').val().trim();
-        var tblMemberSeq = $('#tblMemberSeq').val();
-
-        // 입력된 닉네임과 기존 버튼의 data-nickname(대소문자 무시) 비교
+        var inputNickname = $('#nickname').val().trim(); // 상대방 닉네임 입력값
+        var tblMemberSeq = $('#tblMemberSeq').val(); // 내 회원 시퀀스 (hidden input 등)
+        
+        // 이미 해당 상대방과 채팅방이 있는지 확인
         var found = false;
         $('.toggle-btn').each(function(){
-            if ($(this).data('nickname').toLowerCase() === nickname.toLowerCase()){
+            if ($(this).data('nickname').toLowerCase() === inputNickname.toLowerCase()){
                 found = true;
                 $(this).click();
                 return false;
             }
         });
         
-        // 존재하지 않을 경우 AJAX 요청으로 새 채팅방 생성
-        if(!found){
-        	var createUrl = "${pageContext.request.contextPath}/ChatRoomCreateServlet";
+        // 없으면 AJAX 요청으로 새 채팅방 생성
+        if (!found) {
+            var createUrl = "${pageContext.request.contextPath}/ChatRoomCreateServlet";
             $.ajax({
                 url: createUrl,
                 type: "POST",
                 data: {
                     tblMemberSeq: tblMemberSeq,
-                    nickname: nickname
+                    nickname: inputNickname
                 },
                 dataType: "json",
                 success: function(response){
                     if(response.tblChatRoomSeq) {
                         // 동적으로 새로운 버튼 추가 후 클릭 이벤트 실행
                         var newButton = $('<button type="button" class="toggle-btn" data-chatroom="' 
-                            + response.tblChatRoomSeq + '" data-nickname="' + nickname + '">'
-                            + nickname + '와 채팅하기</button>');
+                            + response.tblChatRoomSeq + '" data-nickname="' + inputNickname + '">'
+                            + inputNickname + '와 채팅하기</button>');
                         $('.button-group').append(newButton);
                         newButton.click();
                     } else {
@@ -323,11 +334,14 @@
             });
         }
     });
- 
-    $('#logo').click(() => { 
-        window.location.href =  '/lighting/main.do'; // 메인페이지로 이동
-      });
- 
-    </script>
+    
+    // 로고 클릭 시 메인 페이지로 이동
+    $('#logo').click(function(){ 
+        window.location.href = '${pageContext.request.contextPath}/main.do';
+    });
+});
+</script>
+
+
 </body>
 </html>
