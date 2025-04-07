@@ -328,7 +328,7 @@
     
     $(document).ready(function(){
         $.ajax({
-            url: '/lighting/weatherdata.do',
+            url: '/lighting/weather.do',
             type: 'GET',
             dataType: 'json',
             success: function(data) {
