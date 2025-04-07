@@ -16,8 +16,8 @@ public class MailSender {
 
     public void send(HashMap<String, String> map) {
         try {
-            String username = "yejin777888@gmail.com";
-            String password = "zudx xoad lrpf mosz";  
+            String username = "thdnjs1346@gmail.com";
+            String password = "oimy dxqb iamo lpze";  
 
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");

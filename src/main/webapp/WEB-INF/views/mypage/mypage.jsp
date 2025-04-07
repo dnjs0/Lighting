@@ -46,12 +46,12 @@
     }
 </script>
 
-	    <!-- 전체 박스 -->
+        <!-- 전체 박스 -->
     <style> 
 
-		body {
-			margin: 0;
-		}
+        body {
+            margin: 0;
+        }
 
         #mypageLogo {
             display: inline-block;
@@ -182,9 +182,9 @@
         
     </style> 
 
-	<!-- box2 공통-->
-	<style>
-		#btnPassion {
+    <!-- box2 공통-->
+    <style>
+        #btnPassion {
             width: 130px;
             background-color: #1e62c8;
             color: white;
@@ -219,9 +219,9 @@
         .title {
             cursor: pointer;
         }
-	</style>
-	
-	<!-- box2 joined -->
+    </style>
+    
+    <!-- box2 joined -->
     <c:if test="${sessionScope.status == 'joined'}">
     <style>
 
@@ -701,7 +701,7 @@
     </style>
     </c:if>
 
-	<!-- box3,4 -->
+    <!-- box3,4 -->
     <style>
 
         #friendList > :nth-child(1) {
@@ -729,7 +729,7 @@
         }
         
         .btnDelFreiend, .btnUnblock {
-        	cursor: pointer;
+            cursor: pointer;
         }
 
     </style>
@@ -737,11 +737,11 @@
 </head>
 <body>
 
-	<div id="back_box">
-	<%@ include file="/WEB-INF/views/inc/header.jsp" %>
-	
-	
-	<main>
+    <div id="back_box">
+    <%@ include file="/WEB-INF/views/inc/header.jsp" %>
+    
+    
+    <main>
         <h2 id="mypageLogo">마이 페이지</h2>
         
 
@@ -772,68 +772,68 @@
 
                 <div class="link">
                     <a href="#!" onclick="changeStatusAndMove('joined', '/lighting/mypage/mypage.do');">
-                    	<c:if test="${sessionScope.status == 'joined'}">
-                    	<b>
-                    	</c:if>
-                    	내가 참여한 모임 보기
-                    	<c:if test="${sessionScope.status == 'joined'}">
-                    	</b>
-                    	</c:if>
+                        <c:if test="${sessionScope.status == 'joined'}">
+                        <b>
+                        </c:if>
+                        내가 참여한 모임 보기
+                        <c:if test="${sessionScope.status == 'joined'}">
+                        </b>
+                        </c:if>
                     </a>
                 </div>
                 <div class="link">
                     <a href="#!" onclick="changeStatusAndMove('written', '/lighting/mypage/mypage.do');">
-                    	<c:if test="${sessionScope.status == 'written'}">
-                    	<b>
-                    	</c:if>
-                    	내가 작성한 글 보기
-                    	<c:if test="${sessionScope.status == 'written'}">
-                    	</b>
-                    	</c:if>
+                        <c:if test="${sessionScope.status == 'written'}">
+                        <b>
+                        </c:if>
+                        내가 작성한 글 보기
+                        <c:if test="${sessionScope.status == 'written'}">
+                        </b>
+                        </c:if>
                     </a>
                 </div>
                 <div class="link">
                     <a href="#!" onclick="changeStatusAndMove('wish', '/lighting/mypage/mypage.do');">
-                    	<c:if test="${sessionScope.status == 'wish'}">
-                    	<b>
-                    	</c:if>
-                    	내가 찜한 모임 보기
-                    	<c:if test="${sessionScope.status == 'wish'}">
-                    	</b>
-                    	</c:if>
+                        <c:if test="${sessionScope.status == 'wish'}">
+                        <b>
+                        </c:if>
+                        내가 찜한 모임 보기
+                        <c:if test="${sessionScope.status == 'wish'}">
+                        </b>
+                        </c:if>
                     </a>
                 </div>
                 <div class="link">
                     <a href="#!" onclick="changeStatusAndMove('requesting', '/lighting/mypage/mypage.do')">
-                    	<c:if test="${sessionScope.status == 'requesting'}">
-                    	<b>
-                    	</c:if>
-                    	내가 신청한 모임 보기
-                    	<c:if test="${sessionScope.status == 'requesting'}">
-                    	</b>
-                    	</c:if>
+                        <c:if test="${sessionScope.status == 'requesting'}">
+                        <b>
+                        </c:if>
+                        내가 신청한 모임 보기
+                        <c:if test="${sessionScope.status == 'requesting'}">
+                        </b>
+                        </c:if>
                     </a>
                 </div>
                 <div class="link">
                     <a href="#!" onclick="changeStatusAndMove('requested', '/lighting/mypage/mypage.do')">
-                    	<c:if test="${sessionScope.status == 'requested'}">
-                    	<b>
-                    	</c:if>
-                    	내가 만든 모임 신청 보기
-                    	<c:if test="${sessionScope.status == 'requested'}">
-                    	</b>
-                    	</c:if>
+                        <c:if test="${sessionScope.status == 'requested'}">
+                        <b>
+                        </c:if>
+                        내가 만든 모임 신청 보기
+                        <c:if test="${sessionScope.status == 'requested'}">
+                        </b>
+                        </c:if>
                     </a>
                 </div>
                 <div class="link">
                     <a href="#!" onclick="changeStatusAndMove('updateInfo', '/lighting/mypage/mypage.do');">
-                    	<c:if test="${sessionScope.status == 'updateInfo'}">
-                    	<b>
-                    	</c:if>
-                    	회원 정보 수정
-                    	<c:if test="${sessionScope.status == 'updateInfo'}">
-                    	</b>
-                    	</c:if>
+                        <c:if test="${sessionScope.status == 'updateInfo'}">
+                        <b>
+                        </c:if>
+                        회원 정보 수정
+                        <c:if test="${sessionScope.status == 'updateInfo'}">
+                        </b>
+                        </c:if>
                     </a>
                 </div>
                 <div id="unregister">
@@ -857,7 +857,7 @@
                         <th>제목</th>
                         <th>모집인원</th>
                         <th>
-                        	<!-- change 이벤트 걸기 -->
+                            <!-- change 이벤트 걸기 -->
                             <select name="sort" id="sort_joined" onchange="sortMeetings('joined')">
                                 <option value="recentOrder" ${param.sort eq 'recentOrder' ? 'selected' : ''}>최신 순</option>
                                 <option value="koreanOrder" ${param.sort eq 'koreanOrder' ? 'selected' : ''}>가나다 순</option>
@@ -879,7 +879,7 @@
                             <!-- 글 작성자의 활동지역 가져오기 -->
                             ${meeting.location}
                         </td>
-                        <td class="col3 title">
+                        <td class="col3 title" data-tblmeetingpostseq="${meeting.tblMeetingPostSeq}">
                             <!-- 게시글의 제목 가져오기 -->
                             ${meeting.title}
                         </td>
@@ -924,7 +924,7 @@
                             <!-- 모임시작시간 가져와서 파싱해서 값 넣기 -->
                             ${meeting.startTime}
                         </td>
-                        <td class="col2 title">
+                        <td class="col2 title" data-tblmeetingpostseq="${meeting.tblMeetingPostSeq}">
                             <!-- 게시글의 제목 가져오기 -->
                             ${meeting.title}
                         </td>
@@ -977,7 +977,7 @@
                             <!-- 글 작성자의 활동지역 가져오기 -->
                             서울/강남구${meeting.location}
                         </td>
-                        <td class="col3 title">
+                        <td class="col3 title" data-tblmeetingpostseq="${meeting.tblMeetingPostSeq}">
                             <!-- 게시글의 제목 가져오기 -->
                             ${meeting.title}
                         </td>
@@ -1010,7 +1010,7 @@
                         <th>제목</th>
                         <th>모집인원</th>
                         <th>
-                        	<!-- change 이벤트 걸기 -->
+                            <!-- change 이벤트 걸기 -->
                             <select name="sort" id="sort_requesting" onchange="sortMeetings('requesting')">
                                 <option value="recentOrder" ${param.sort eq 'recentOrder' ? 'selected' : ''}>최신 순</option>
                                 <option value="koreanOrder" ${param.sort eq 'koreanOrder' ? 'selected' : ''}>가나다 순</option>
@@ -1022,34 +1022,34 @@
                     </tr>
                     
                     <c:forEach var="meeting" items="${meetingList}">
-				    <tr>
-				        <td class="col1">${meeting.startTime}</td>
-				        <td class="col2">서울/강남구 ${meeting.location}</td>
-				        <td class="col3 title">${meeting.title}</td>
-				        <td class="col4"><span>${meeting.capacity}</span>명</td>
-				        <td class="col5">
-				            <c:choose>
-				                <c:when test="${meeting.approvalStatus == 'n'}">
-				                    <c:choose>
-				                        <c:when test="${meeting.requestSeq gt 0}">
-				                            <button class="btnRejectionReason" data-requestseq="${meeting.requestSeq}">
-				                                (거부)사유
-				                            </button>
-				                        </c:when>
-				                        <c:otherwise>
-				                            <button class="btnCancle" data-requestseq="${meeting.requestSeq}">
-				                                취소
-				                            </button>
-				                        </c:otherwise>
-				                    </c:choose>
-				                </c:when>
-				                <c:otherwise>
-				                    <button class="btnConfirmed">승인완료</button>
-				                </c:otherwise>
-				            </c:choose>
-				        </td>
-				    </tr>
-				    </c:forEach>
+                    <tr>
+                        <td class="col1">${meeting.startTime}</td>
+                        <td class="col2">서울/강남구 ${meeting.location}</td>
+                        <td class="col3 title" data-tblmeetingpostseq="${meeting.tblMeetingPostSeq}">${meeting.title}</td>
+                        <td class="col4"><span>${meeting.capacity}</span>명</td>
+                        <td class="col5">
+                            <c:choose>
+                                <c:when test="${meeting.approvalStatus == 'n'}">
+                                    <c:choose>
+                                        <c:when test="${meeting.requestSeq gt 0}">
+                                            <button class="btnRejectionReason" data-requestseq="${meeting.requestSeq}">
+                                                (거부)사유
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button class="btnCancle" data-requestseq="${meeting.requestSeq}">
+                                                취소
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="btnConfirmed">승인완료</button>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+                    </c:forEach>
 
                 </table>
                 </c:if>
@@ -1064,7 +1064,7 @@
                         <th>제목</th>
                         <th>모집인원</th>
                         <th>
-                        	<!-- change 이벤트 걸기 -->
+                            <!-- change 이벤트 걸기 -->
                             <select name="sort" id="sort_requested" onchange="sortMeetings('requested')">
                                 <option value="recentOrder" ${param.sort eq 'recentOrder' ? 'selected' : ''}>최신 순</option>
                                 <option value="koreanOrder" ${param.sort eq 'koreanOrder' ? 'selected' : ''}>가나다 순</option>
@@ -1086,7 +1086,7 @@
                             <!-- 글 작성자의 활동지역 가져오기 -->
                             ${meeting.location}
                         </td>
-                        <td class="col3 title">
+                        <td class="col3 title" data-tblmeetingpostseq="${meeting.tblMeetingPostSeq}">
                             <!-- 게시글의 제목 가져오기 -->
                             ${meeting.title}
                         </td>
@@ -1095,7 +1095,7 @@
                             <span>${meeting.capacity}</span>명
                         </td>
                         <td class="col5">
-                            <button class="btnRequested">
+                            <button class="btnRequested" onclick="openServletInNewWindow('/lighting/mypage/applystatus.do?meetingPostSeq=${meeting.tblMeetingPostSeq}')">
                                 신청 받은 현황
                             </button>
                         </td>
@@ -1134,7 +1134,7 @@
             
 
 
-			
+            
 
             <div id="box3">
                 <div id="friendList">
@@ -1183,60 +1183,65 @@
 
     </main>
 
-	<%@ include file="/WEB-INF/views/inc/footer.jsp" %>
-	</div>
-	
-	<!-- 마이페이지 공통 자바스크립트 -->
-	<script>
+    <%@ include file="/WEB-INF/views/inc/footer.jsp" %>
+    </div>
+    
+    <!-- 마이페이지 공통 자바스크립트 -->
+    <script>
 
-	$('#btnPassion').click(()=>{
-    	openServletInNewWindow("/lighting/mypage/grade.do");
+    $('#btnPassion').click(()=>{
+        openServletInNewWindow("/lighting/mypage/grade.do");
     });
-	
-	$('#unregister').click(()=>{
-    	openServletInNewWindow("/lighting/mypage/unregister.do");
+    
+    $('#unregister').click(()=>{
+        openServletInNewWindow("/lighting/mypage/unregister.do");
     });
-	
-	$('.btnEvaluation').click(()=>{
-    	openServletInNewWindow("/lighting/mypage/giveevaluation.do");
+    
+    $('.btnEvaluation').click(()=>{
+        openServletInNewWindow("/lighting/mypage/giveevaluation.do");
     });
-	
-	$('#btnUpdateInfo').click(()=>{
-    	openServletInNewWindow("/lighting/mypage/updateinfo.do");
+    
+    $('#btnUpdateInfo').click(()=>{
+        openServletInNewWindow("/lighting/mypage/updateinfo.do");
     });
-	
-	$('#btnUpdatePassword').click(()=>{
-    	openServletInNewWindow("/lighting/mypage/updatepassword.do");
+    
+    $('#btnUpdatePassword').click(()=>{
+        openServletInNewWindow("/lighting/mypage/updatepassword.do");
     });
-	
-	$('.btnDeletePost').click(()=>{
-    	openServletInNewWindow("/lighting/meeting/delete.do");
+    
+    $('.btnDeletePost').click(()=>{
+        openServletInNewWindow("/lighting/meeting/delete.do");
     });
-	
-	$('#btnUpdateProfile').click(()=>{
-    	openServletInNewWindow("/lighting/mypage/updateprofile.do");
+    
+    $('#btnUpdateProfile').click(()=>{
+        openServletInNewWindow("/lighting/mypage/updateprofile.do");
     });
-	
-	$('#btnOpenPublic').click(()=>{
-    	openServletInNewWindow("/lighting/mypage/updateopenpublic.do");
+    
+    $('#btnOpenPublic').click(()=>{
+        openServletInNewWindow("/lighting/mypage/updateopenpublic.do");
     });
-	
-	$('.btnRejectionReason').click(()=>{
-    	openServletInNewWindow("/lighting/mypage/rejectionreason.do?requestSeq=3");
+    
+    $('.btnRejectionReason').click(()=>{
+        openServletInNewWindow("/lighting/mypage/rejectionreason.do?requestSeq=3");
     });
-	
+    
     function openServletInNewWindow(servletUrl) {
         window.open(servletUrl, "_blank", "width=600,height=400,scrollbars=yes");
     }
     
     $('#list .title').click(()=>{
-    	location.href='/lighting/meeting/read.do';
+        const tdElement = document.querySelector('.col3.title'); // 첫 번째 요소만 가져옴
+        const postSeq = tdElement.dataset.tblmeetingpostseq;
+
+        console.log(postSeq);
+
+         location.href = '/lighting/meeting/read.do?tblMeetingPostSeq=' + postSeq;
     });
     
     //셀렉트 박스 정렬
     function sortMeetings(section) {
-	    var sortValue = document.getElementById('sort_' + section).value;
-	    window.location.href = '/lighting/mypage/mypage.do?status=' + section + '&sort=' + sortValue;
+        var sortValue = document.getElementById('sort_' + section).value;
+        window.location.href = '/lighting/mypage/mypage.do?status=' + section + '&sort=' + sortValue;
     }
     
     function deleteFriend(friendId, btn) {
@@ -1303,7 +1308,7 @@
                 data: { friendId: friendId },
                 dataType: 'json',
                 success: function(res) {
-                	console.log("🔥 받은 점수:", res.score);
+                    console.log("🔥 받은 점수:", res.score);
                     let score = res.score;
                     let grade = "실버";
                     if (score >= 4) grade = "마스터";
@@ -1404,6 +1409,16 @@
 
     function openServletInNewWindow(servletUrl) {
         window.open(servletUrl, "_blank", "width=600,height=400,scrollbars=yes");
+    }
+    
+    $('#list').on('click', '.title', function() {
+        const postSeq = $(this).data('tblmeetingpostseq');
+        console.log("게시글 번호:", postSeq);
+        location.href = '/lighting/meeting/read.do?tblMeetingPostSeq=' + postSeq;
+    });
+    
+    function openServletInNewWindow(url) {
+        window.open(url, '_blank', 'width=700,height=600,scrollbars=yes');
     }
     </script>
     

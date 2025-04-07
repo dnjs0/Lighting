@@ -249,7 +249,7 @@
             var cssClass = isMine ? "mine" : "other";
 
             $('#chatBox').append(
-            	    `<p class="${cssClass}"><strong>\${senderDisplay} :</strong> \${data.content} 
+            	    `<p class="\${cssClass}"><strong>\${senderDisplay} :</strong> \${data.content} 
             	    <em>(\${new Date(data.timestamp).toLocaleTimeString()})</em></p>`
             	  );
 

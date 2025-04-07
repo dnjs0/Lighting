@@ -270,7 +270,7 @@ textarea:focus, input:focus, button:focus, #title:focus {
 }
 
 	#location {
-		border: 1px solid #1e62c8;
+		/* border: 1px solid #1e62c8; */
 		border-radius: 4px;
 		width: 200px;
 		height: 30px;

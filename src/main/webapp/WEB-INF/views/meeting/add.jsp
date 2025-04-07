@@ -271,7 +271,7 @@
 	}
 	
 	#location {
-		border: 1px solid #1e62c8;
+		/* border: 1px solid #1e62c8; */
 		border-radius: 4px;
 		width: 200px;
 		height: 30px;
@@ -372,6 +372,9 @@
 <%@ include file="/WEB-INF/views/inc/footer.jsp" %>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1697336f6cbeae05fbfbf1920de091c"></script>
     <script>
+    $(document).ready(function() {
+    	  
+    	
     
 		let m1 = null;
 		let info = null;
@@ -630,7 +633,7 @@
             });
         
         }
-        
+    });
 		
     </script>
 </body>

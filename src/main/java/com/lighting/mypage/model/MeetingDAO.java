@@ -52,7 +52,7 @@ public class MeetingDAO {
                 case "lessCapOrder": orderBy = "ORDER BY mp.capacity ASC"; break;
                 case "oldestOrder": orderBy = "ORDER BY mp.startTime ASC"; break;
             }
-            String sql = "SELECT DISTINCT mp.tblMeetingPostSeq, mp.title, mp.location, mp.capacity, " +
+            String sql = "SELECT mp.tblMeetingPostSeq, mp.title, mp.location, mp.capacity, " +
                          "TO_CHAR(mp.startTime, 'YYYY\"년 \"FMMM\"월 \"FMDD\"일\"') AS startTime, " +
                          "pr.approvalStatus, pr.tblParticipationRequestSeq AS requestSeq " +
                          "FROM tblParticipationRequest pr " +
@@ -167,7 +167,7 @@ public class MeetingDAO {
                 case "oldestOrder": orderBy = "ORDER BY m.startTime ASC"; break;
             }
 
-            String sql = "SELECT DISTINCT m.tblMeetingPostSeq, m.title, m.location, m.capacity, " +
+            String sql = "SELECT m.tblMeetingPostSeq, m.title, m.location, m.capacity, " +
                          "TO_CHAR(m.startTime, 'YYYY\"년 \"FMMM\"월 \"FMDD\"일\"') AS startTime, " +
                          "pr.approvalStatus, pr.tblParticipationRequestSeq AS requestSeq " +
                          "FROM tblMeetingPost m " +
@@ -211,7 +211,7 @@ public class MeetingDAO {
                 case "lessCapOrder": orderBy = "ORDER BY m.capacity ASC"; break;
                 case "oldestOrder": orderBy = "ORDER BY startTime ASC"; break; // ** 수정됨: m.startTime -> startTime
             }
-            String sql = "SELECT DISTINCT m.tblMeetingPostSeq, m.title, m.location, m.capacity, " +
+            String sql = "SELECT m.tblMeetingPostSeq, m.title, m.location, m.capacity, " +
                          "TO_CHAR(m.startTime, 'YYYY\"년 \"FMMM\"월 \"FMDD\"일\"') AS startTime " +
                          "FROM tblMeetingPost m JOIN tblParticipationRequest pr " +
                          "ON m.tblMeetingPostSeq = pr.tblMeetingPostSeq " +

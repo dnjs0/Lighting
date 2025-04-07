@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
   <title>오늘어때?</title>
   <style>
-    /* 공통 스타일 초기화 */
+   /* 공통 스타일 초기화 */
     @font-face {  
       font-family: 'Pretendard-Regular';  
       src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');  
@@ -36,44 +36,45 @@
       position: relative;
     }
     
-    #logo {
-      position: absolute;
-      left: 0; 
-      top: 0;
-      width: 250px;
-      margin: 15px 0 0 15px;
-      cursor:pointer;
-    }
+#logo {
+    width: 220px;
+    /* margin: -5px 0 0 5px; */
+    cursor: pointer;
+    position: relative;
+    bottom: 25px;
+}
 
     /* 안내 문구 */
     .signupTitle {
-      font-size: 18px;
-      line-height: 1.4;
-      text-align: center;
-      margin: 60px auto 50px;
+      font-size: 30px;
+    text-align: center;
+    margin: 5px;
+    position: relative;
+    bottom: 25px;
     }
 
     /* 진행 바 */
     #stepBox {
-      width: 550px;
-      height: auto;
-      display: block;
-      margin: 0 auto 50px auto;
-    } 
-    
-    #step {
-      width: 550px;
-      height: auto;
-    }
+    margin: 10px;
+    align-items: center;
+    margin-top : 25px;
+    margin-bottom: 25px;
+    position: relative;
+    left: 220px;
+    bottom: 20px;
+}
 
     /* 회원가입 폼 */
     .signupForm {
-      max-width: 500px;
+      max-width: 600px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 20px;
+      position: relative;
+      bottom:20px;
     }
+    
     /* 라벨 & 인풋 구역 */
     .formGroup {
       width: 100%;

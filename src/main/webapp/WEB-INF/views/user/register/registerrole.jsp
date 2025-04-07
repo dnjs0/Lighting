@@ -10,9 +10,22 @@
 <!-- <link rel="stylesheet" href="css/lighting.css"> -->
 
 <style>
+@font-face {  
+      font-family: 'Pretendard-Regular';  
+      src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');  
+      font-weight: 400;  
+      font-style: normal;
+    }  
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pretendard-Regular';
+    }
 body {
     width: 1300px;
-    height: 1700px;
+    height: 1000px;
     background-color: #fff;
     margin: 0 auto;
 }
@@ -24,9 +37,9 @@ body {
     box-sizing: border-box;    
 }
 
-#logo1 {
-    width: 250px;
-    margin: 15px 0 0 15px;
+#logo {
+    width: 220px;
+    margin: 15px 0 0 20px;
     cursor: pointer;
 }
 
@@ -34,14 +47,16 @@ body {
     /*  border: solid 1px black; */
     font-size: 30px;
     text-align: center;
+    margin: 5px;
 }
 
 #pic > img {
     margin: 10px;
-    text-align: center;
-    margin-bottom: 10px;
+    align-items: center;
+    margin-top : 25px;
+    margin-bottom: 25px;
     position: relative;
-    left: 230px;
+    left: 240px;
 }
 
 #button {
@@ -59,7 +74,7 @@ body {
     margin: 0 auto;
     /* border: solid 1px black; */
     background: #1e62c8;
-    width: 700px;
+    width: 800px;
     height: 50px;
     color: #FFF;
     border-radius: 15px 15px 0 0;
@@ -70,7 +85,7 @@ body {
     margin: 0 auto;
     /* border: solid 1px black; */
     background: #FFF;
-    width: 700px;
+    width: 800px;
     height: 300px;
     padding: 20px;
     overflow-y: auto;
@@ -109,7 +124,8 @@ body {
     <!-- registerrole.jsp -->
     <main class="container">
     <div id="div1">
-        <img alt="" id="logo1" src="/lighting/asset/images/a.webp">
+        <img alt="로고" src="/lighting/images/logo_가로.png" id="logo" onclick="location.href='/lighting/main.do';">
+
     </div>
     <div id="tx">
         회원가입을 위해 <br>아래 서비스<b>이용약관에 동의</b>해주세요.
